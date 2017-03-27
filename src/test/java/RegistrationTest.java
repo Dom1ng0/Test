@@ -21,15 +21,15 @@ public class RegistrationTest {
 
     @Test
     public void testRegistrationNewUser() throws Exception{
-        driver.findElement(By.xpath(".//*[@id='page']/div/div[3]/div[2]/form/div[2]/div[2]/input")).sendKeys("tester"); //name
-        driver.findElement(By.xpath(".//*[@id='page']/div/div[3]/div[2]/form/div[3]/div[2]/input")).sendKeys("test" + Math.random() + "@test.com");
-        driver.findElement(By.xpath(".//*[@id='page']/div/div[3]/div[2]/form/div[4]/div[2]/input")).sendKeys("test123"); //pass
+        driver.findElement(By.cssSelector("input[data-qa='txtName']")).sendKeys("tester"); //name
+        driver.findElement(By.cssSelector("input[data-qa='txtEmail']")).sendKeys("test" + Math.random() + "@test.com");
+        driver.findElement(By.cssSelector("input[data-qa='txtPassword']")).sendKeys("test123"); //pass
 
-        Select dropdown = new Select(driver.findElement(By.xpath(".//*[@id='page']/div/div[3]/div[2]/form/div[5]/div[2]/div/select")));
+        Select dropdown = new Select(driver.findElement(By.cssSelector("select[data-qa='txtRole']")));
         dropdown.selectByVisibleText("Student (Non-native Speaker)");
 
-        driver.findElement(By.xpath(".//*[@id='page']/div/div[3]/div[2]/form/div[6]/input")).click();
-        AssertEquals("Hello, tester", driver.findElement(By.xpath(".//*[@id='page']/div/div[1]/div[2]/div/div/div/span")).getText());
+        driver.findElement(By.cssSelector("input[data-qa='btnSignUp']")).click();
+        AssertEquals("Hello, tester", driver.findElement(By.cssSelector("span[data-qa='txtUsername']")).getText());
     }
 
     @After
