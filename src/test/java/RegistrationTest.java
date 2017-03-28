@@ -1,4 +1,3 @@
-
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.*;
 import org.openqa.selenium.*;
@@ -7,17 +6,12 @@ import pageObjects.RegistrationPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class RegistrationTest {
-    private WebDriver driver;
-    private void AssertEquals(String s, String text){}
+public class RegistrationTest extends BaseTest {
 
     @Before
     public void setUp() throws Exception{
-        ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get("https://www.grammarly.com/signup?breadcrumbs=true&no_install=true");
+        super.setUp();
+        driver.get(this.registrationUrl);
     }
 
     @Test
@@ -49,10 +43,5 @@ public class RegistrationTest {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registration("tester", "test" + Math.random() + "@test.com", "test123", "");
         AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorundefined']")).getText());
-    }
-
-    @After
-    public void tearDown() throws Exception{
-    driver.quit();
     }
 }
