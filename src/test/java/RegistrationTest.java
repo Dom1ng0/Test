@@ -44,8 +44,4 @@ public class RegistrationTest extends BaseTest {
         registrationPage.registration("tester", "test" + Math.random() + "@test.com", "test123", "");
         AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorundefined']")).getText());
     }
-    @After
-    public void tearDown() throws Exception{
-        driver.quit();
-    }
 }
