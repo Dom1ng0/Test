@@ -21,12 +21,12 @@ public class BaseTest {
     }
     @Before
     public void setUp() throws Exception{
-        System.out.println("BEFORE TEST IS EXECUTED");
+        System.out.println("BEFORE TEST");
     }
     @After
     public void tearDown() throws Exception{
         driver.manage().deleteAllCookies();
-        System.out.println("AFTER TEST IS EXECUTED");
+        System.out.println("AFTER TEST");
     }
     @AfterClass
     public static void afterAll() {
