@@ -26,6 +26,30 @@ public class RegistrationTest {
         registrationPage.registration("tester", "test" + Math.random() + "@test.com", "test123", "Other");
         AssertEquals("Hello, tester", driver.findElement(By.cssSelector("span[data-qa='txtUsername']")).getText());
     }
+    @Test
+    public void testRegistrationNoUserName() throws Exception{
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.registration("", "test" + Math.random() + "@test.com", "test123", "Other");
+        AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorName']")).getText());
+    }
+    @Test
+    public void testRegistrationNoEmail() throws Exception{
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.registration("tester", "", "test123", "Other");
+        AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorEmail']")).getText());
+    }
+    @Test
+    public void testRegistrationNoPassword() throws Exception{
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.registration("tester", "test" + Math.random() + "@test.com", "", "Other");
+        AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorPassword']")).getText());
+    }
+    @Test
+    public void testRegistrationNotSelectedDropdown() throws Exception{
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.registration("tester", "test" + Math.random() + "@test.com", "test123", "");
+        AssertEquals("Required", driver.findElement(By.cssSelector("div[data-qa='msgErrorundefined']")).getText());
+    }
 
     @After
     public void tearDown() throws Exception{
