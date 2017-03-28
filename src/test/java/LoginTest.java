@@ -18,7 +18,6 @@ public class LoginTest extends BaseTest {
     public void testLogin() throws Exception{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("test.login@test.ua", "123456");
-        Thread.sleep(3000);
         AssertEquals("Log out", driver.findElement(By.cssSelector("a[data-name=\"logout-lnk\"]")).getText());
     }
     @Test
