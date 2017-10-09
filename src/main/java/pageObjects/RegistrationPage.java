@@ -10,33 +10,41 @@ public class RegistrationPage extends BasePage {
         super(driver);
     }
 
-    public void registration(String userName, String email, String password, String dropDown) {
-        typeUserName(userName);
+    public void registration(String email, String password, String userName) {
+
         typeEmail(email);
+        clickConfirmEmailButton();
         typePassword(password);
-        selectDropdown(dropDown);
+        clickConfirmPasswordButton();
+        typeUserName(userName);
         clickRegistrationButton();
     }
 
-    private void typeUserName(String userName) {
-        type(userName, "input[data-qa='txtName']");
+    private void typeEmail(String email) {
+        type(email, "[data-qa='txtEmail']");
     }
 
-    private void typeEmail(String email) {
-        type(email, "input[data-qa='txtEmail']");
+    private void clickConfirmEmailButton() {
+        driver.findElement(By.cssSelector("[data-qa='btnEmail']")).click();
     }
 
     private void typePassword(String password) {
-        type(password, "input[data-qa='txtPassword']");
+        type(password, "[data-qa='txtPassword']");
     }
+
+    private void clickConfirmPasswordButton() {
+        driver.findElement(By.cssSelector("[data-qa='btnPassword']")).click();
+    }
+
+    private void typeUserName(String userName) {type(userName, "[data-qa='txtName']"); }
 
     private void clickRegistrationButton() {
-        driver.findElement(By.cssSelector("input[data-qa='btnSignUp']")).click();
+        driver.findElement(By.cssSelector("[data-qa='btnSignUp']")).click();
     }
 
-    private void selectDropdown(String value) {
+    /*private void selectDropdown(String value) {
         Select dropdown = new Select(driver.findElement(By.cssSelector("select[data-qa='txtRole']")));
         dropdown.selectByVisibleText(value);
-    }
+    }*/
 
 }

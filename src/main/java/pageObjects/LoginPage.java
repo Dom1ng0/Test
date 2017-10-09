@@ -17,14 +17,14 @@ public class LoginPage extends BasePage {
     }
 
     private void typeEmail(String email) {
-        type(email, "input[data-qa=\"txtEmail\"]");
+        type(email, "[data-qa=\"txtEmail\"]");
     }
 
     private void typePassword(String password) {
-        type(password, "input[data-qa=\"txtPassword\"]");
+        type(password, "[data-qa=\"txtPassword\"]");
     }
 
     private void clickLoginButton() {
-        driver.findElement(By.cssSelector("input[data-qa=\"btnLogin\"]")).click();
+        driver.findElement(By.cssSelector("[data-qa=\"btnLogin\"]")).click();
     }
 }
