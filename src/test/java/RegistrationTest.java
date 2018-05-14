@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pageObjects.RegistrationPage;
+import static org.junit.Assert.*;
 
 public class RegistrationTest extends BaseTest {
 
@@ -15,27 +16,27 @@ public class RegistrationTest extends BaseTest {
     public void testRegistrationNewUser() throws Exception {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registration("test" + Math.random() + "@test.com", "test123", "tester");
-        AssertEquals("Hello, tester", driver.findElement(By.cssSelector("[data-qa='txtUsername']")).getText());
+        assertEquals("Hello, tester", driver.findElement(By.cssSelector("[data-qa='txtUsername']")).getText());
     }
 
     @Test
     public void testRegistrationNoUserName() throws Exception {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registration("test" + Math.random() + "@test.com", "test123", "");
-        AssertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errName']")).getText());
+        assertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errName']")).getText());
     }
 
     @Test
     public void testRegistrationNoEmail() throws Exception {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registration("", "test123", "tester");
-        AssertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errEmail']")).getText());
+        assertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errEmail']")).getText());
     }
 
     @Test
     public void testRegistrationNoPassword() throws Exception {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registration("test" + Math.random() + "@test.com", "", "tester");
-        AssertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errPassword']")).getText());
+        assertEquals("Required", driver.findElement(By.cssSelector("[data-qa='errPassword']")).getText());
     }
 }
